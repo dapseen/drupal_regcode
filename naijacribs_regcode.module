@@ -1,0 +1,55 @@
+<?php
+
+
+/*
+ *implement hook_menu
+ */
+
+function naijacribs_regcode_menu(){
+    $items = array();
+    $items['user/access-code'] = array(
+        'title' => 'Access code',
+        'description' => 'A page where users view their unique code',
+        'page callback' => 'naijacribs_users_unique_code',
+        'access callback' => TRUE,
+    );
+    return $items;
+}
+function naijacribs_users_unique_code(){
+    $result = db_select('node','n')
+        ->fields('n',array('nid','title'))
+        ->execute();
+    return $result;
+}
+/*
+ * implement hook_permission
+ */
+function naijacribs_regcode_permission() {
+    return array(
+        'administer naijacribs regcode' => array(
+            'title' => t('Administer naijacribs regcode'),
+            'description' => t('Grant access to change settings'),
+        ),
+    );
+}
+/*
+ * implement hook_block_info
+ *
+ */
+/*function naijacribs_regcode_block_info() {
+    // This example comes from node.module.
+    $blocks['naijacribs_regcode'] = array(
+        'info' => t('Get access code'),
+        'cache' => DRUPAL_NO_CACHE
+    );
+    return $blocks;
+}
+
+/**
+ * implement hook_block_view
+ */
+/*function naijacribs_regcode_block_view($delta = '') {
+
+    $block['content'] = naijacribs_users_unique_code();
+        return $block;
+}*/

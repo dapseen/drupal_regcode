@@ -1,0 +1,7 @@
+name = Naijacribs Access code
+description = Provides a functionality for 9jacribs users to gain access to publish properties
+package = naijacribs
+core = 7.x
+dependencies[] = regcode
+
+
